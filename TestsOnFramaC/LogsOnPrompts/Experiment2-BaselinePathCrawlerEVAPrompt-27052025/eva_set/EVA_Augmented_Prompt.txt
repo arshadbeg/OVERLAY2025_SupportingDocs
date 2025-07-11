@@ -1,0 +1,25 @@
+1. Describe any abstract properties of the input program
+that could be represented as ACSL annotations
+2. Analyze the Eva report and describe how the results
+could be used in generating ACSL annotations
+3. Generate ACSL annotations based on your analysis of
+the program and take special account of the properties
+described when analyzing the Eva report
+4. Returning a program with no annotation is not a valid
+solution
+5. Do not edit the C code , only annotations
+6. Make sure to describe your thought process behind the
+annotations
+7. Do not skip any code in the returned solution to make
+it shorter
+8. If you break any of these rules then my family will
+disown me .
+...
+START OF INPUT :
+Program :
+‘‘‘c
+{ program }
+‘‘‘
+Eva Report :
+{ eva }
+...

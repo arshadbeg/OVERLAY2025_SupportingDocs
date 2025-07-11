@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{longtable}
+
+\title{Formal Verification Analysis of Tritype Programs}
+\author{Arshad Beg}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Analysis of Verification on \texttt{baseline\_Example1-Tritype.c}}
+
+The verification of \texttt{baseline\_Example1-Tritype.c} using Frama-C and four SMT solvers (Alt-Ergo, Z3, CVC4, and CVC5) revealed a consistent pattern. With minimal ACSL specification, only two implicit verification goals—termination and unreachability—were generated and successfully verified by all four provers. This indicates that the function is syntactically well-formed and does not exhibit trivial issues like infinite loops or unreachable code paths. However, due to the absence of user-defined postconditions or preconditions, the analysis provides limited insight into functional correctness. The warning about the missing \texttt{assigns} clause suggests that memory side-effects are not specified, potentially causing inaccurate assumptions for callers. Similarly, the absence of RTE (Run-Time Error) guards indicates that common runtime errors like overflows or division by zero are not being verified. While the results demonstrate soundness at a structural level, the lack of deep specification significantly limits the utility of the verification. All provers perform equally under these trivial conditions.
+
+\section*{Comparison of Prover Results on \texttt{baseline\_Example1-Tritype.c}}
+
+\begin{table}[h]
+\centering
+\caption{Prover Results for \texttt{baseline\_Example1-Tritype.c}}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Prover} & \textbf{Total Goals} & \textbf{Proved} & \textbf{Notes} \\ \midrule
+Alt-Ergo & 2 & 2 & All default goals proved \\
+Z3       & 2 & 2 & All default goals proved \\
+CVC4     & 2 & 2 & All default goals proved \\
+CVC5     & 2 & 2 & All default goals proved \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Analysis of Verification on \texttt{pathcrawler\_augmented\_Example1-Tritype.c}}
+
+The \texttt{pathcrawler\_augmented\_Example1-Tritype.c} file, enriched with detailed ACSL annotations, exhibits significantly different verification behavior. A total of 20 goals were generated, including 18 based on user-specified preconditions and postconditions, plus the standard termination and unreachability checks. The analysis reveals a distinct divide in prover effectiveness. While all provers verified termination and basic logic, their ability to handle complex ensures clauses varied. Z3 and CVC5 each failed to prove seven goals—Z3 due to timeouts and CVC4 due to unknown statuses—highlighting their struggles with intricate logical paths and case distinctions. Alt-Ergo and CVC5 fared slightly better, with only five unverified goals each. Notably, the most complex properties, such as correct classification of triangle types (Scalene, Isosceles, Equilateral) and handling of inequality rules, were consistently problematic across all provers. This reflects the challenges solvers face when dealing with disjunction-heavy logic or subtle arithmetic constraints embedded in functional specifications.
+
+\section*{Comparison of Prover Results on \texttt{pathcrawler\_augmented\_Example1-Tritype.c}}
+
+\begin{table}[h]
+\centering
+\caption{Prover Results for \texttt{pathcrawler\_augmented\_Example1-Tritype.c}}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Prover} & \textbf{Total Goals} & \textbf{Proved} & \textbf{Failed Type} & \textbf{Failed Count} \\ \midrule
+Z3       & 20 & 13 & Timeout  & 7 \\
+Alt-Ergo & 20 & 15 & Timeout  & 5 \\
+CVC4     & 20 & 13 & Unknown  & 7 \\
+CVC5     & 20 & 15 & Timeout  & 5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Summary and Recommendations}
+
+From the analysis, it is evident that enhancing ACSL specifications significantly increases the value of formal verification, albeit at the cost of greater computational effort and prover resource usage. The baseline version passed trivially due to lack of functional goals, offering limited assurance. In contrast, the augmented version uncovered practical challenges in the implementation logic of triangle classification. Complex postconditions, especially those involving mutually exclusive branches and arithmetic inequalities, frequently led to timeout or unknown statuses. To address these, it is recommended to introduce modular proofs by breaking down composite postconditions, use auxiliary lemmas, and ensure complete specifications including \texttt{assigns} clauses. Additionally, enabling RTE guards will allow safety verification alongside correctness. Future work may explore combining solvers or using Why3’s backend to orchestrate multiple strategies. This evaluation highlights both the strength and current limitations of SMT-based automatic verifiers in verifying real-world conditional logic encoded in C programs.
+
+\end{document}
+

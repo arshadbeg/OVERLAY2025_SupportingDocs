@@ -1,0 +1,16 @@
+Inputs :
+1. A C program with no ACSL annotations
+GOALS :
+1. Describe any abstract properties that could be
+represented as ACSL annotations
+2. Generate ACSL annotations based on your analysis of
+the program
+3. Returning a program with no annotation is not a valid
+solution
+4. Do not edit the C code , only add annotations
+5. Make sure to describe your thought process behind the
+annotations
+6. Do not skip any code in the returned solution to make
+it shorter .
+7. If you break any of these rules then my family will
+disown me .

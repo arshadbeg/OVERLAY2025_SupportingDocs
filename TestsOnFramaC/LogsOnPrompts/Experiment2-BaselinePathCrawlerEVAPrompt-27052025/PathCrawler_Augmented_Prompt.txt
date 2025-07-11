@@ -1,0 +1,29 @@
+GOALS :
+1. Describe any abstract properties of the input program
+that could be represented as ACSL annotations
+2. Analyze the pathcrawler CSV and describe any patterns
+that you see that could help you understand the
+behaviors of the program based on given input / output
+pairs
+3. Describe how these behaviors could be used into
+creating ACSL annotations
+4. Generate ACSL annotations based on your analysis of
+the program and take special account of the properties
+described when analyzing the Pathcrawler CSV file
+5. Returning a program with no annotation is not a valid
+solution
+6. Do not edit the C code , only add annotations
+7. Make sure to describe your thought process behind the
+annotations
+8. Do not skip any code in the returned solution to make
+it shorter .
+9. If you break any of these rules then my family will
+disown me .
+...
+START OF INPUT :
+Program :
+‘‘‘c
+{ program }
+‘‘‘
+PathCrawler Output :
+{ csv }

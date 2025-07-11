@@ -1,0 +1,128 @@
+Thank you for providing both the C program and the Eva report. I will follow your instructions closely, describing each step of my reasoning and ensuring the output contains complete ACSL annotations without modifying the original C code.
+
+✅ Step 1: Abstract Properties Representable as ACSL Annotations
+The key abstract properties of the Tritype function include:
+
+Non-negativity of inputs: sides must be ≥ 0.
+
+Triangle inequality: the sum of any two sides must be greater than the third.
+
+Return values are from a fixed set: {0, 1, 2, 3}.
+
+The function is pure (no side effects).
+
+The output value depends deterministically on the relationships between i, j, and k.
+
+✅ Step 2: Eva Report Highlights
+The Eva report confirms:
+
+Trityp returns values from {0, 1, 2, 3} — matches expectations.
+
+No runtime errors or alarms were detected.
+
+All logical preconditions were proven valid.
+
+This suggests the function is soundly written, and we can confidently annotate it with preconditions, postconditions, and behaviors.
+
+✅ Step 3: ACSL Annotations for the Program
+Below is the fully annotated version of your program. I've annotated Tritype with preconditions, behavior blocks, and a postcondition for the return value. main() is left unmodified, as requested.
+
+c
+Copy
+Edit
+#include <stdio.h>
+
+/*@ 
+  requires \true;
+
+  behavior not_triangle_negative:
+    assumes i < 0.0 || j < 0.0 || k < 0.0;
+    ensures \result == 3;
+
+  behavior not_triangle_inequality:
+    assumes i >= 0.0 && j >= 0.0 && k >= 0.0 &&
+            (i + j <= k || j + k <= i || k + i <= j);
+    ensures \result == 3;
+
+  behavior equilateral:
+    assumes i >= 0.0 && j >= 0.0 && k >= 0.0 &&
+            i == j && j == k;
+    ensures \result == 2;
+
+  behavior isosceles:
+    assumes i >= 0.0 && j >= 0.0 && k >= 0.0 &&
+            ((i == j && i != k) || 
+             (i == k && i != j) || 
+             (j == k && j != i)) &&
+            (i + j > k && j + k > i && k + i > j);
+    ensures \result == 1;
+
+  behavior scalene:
+    assumes i >= 0.0 && j >= 0.0 && k >= 0.0 &&
+            i != j && j != k && i != k &&
+            (i + j > k && j + k > i && k + i > j);
+    ensures \result == 0;
+
+  complete behaviors;
+  disjoint behaviors;
+
+  ensures 0 <= \result <= 3;
+*/
+int Tritype(double i, double j, double k) {
+    int trityp = 0;
+    if (i < 0.0 || j < 0.0 || k < 0.0)
+        return 3;
+    if (i + j <= k || j + k <= i || k + i <= j)
+        return 3;
+    if (i == j) trityp = trityp + 1;
+    if (i == k) trityp = trityp + 1;
+    if (j == k) trityp = trityp + 1;
+    if (trityp >= 2)
+        trityp = 2;
+    return trityp;
+}
+
+int main() {
+    // Test cases: {i, j, k, expected result description}
+    struct {
+        double i, j, k;
+        const char* description;
+    } test_cases[] = {
+        {3, 3, 3, "Equilateral triangle (expected: 2)"},
+        {3, 3, 5, "Isosceles triangle (expected: 1)"},
+        {4, 5, 6, "Scalene (other) triangle (expected: 0)"},
+        {1, 2, 3, "Not a triangle (violates triangle inequality, expected: 3)"},
+        {-1, 2, 3, "Invalid side (negative, expected: 3)"},
+        {5, 5, 10, "Not a triangle (equal sides but invalid, expected: 3)"}
+    };
+
+    for (int t = 0; t < sizeof(test_cases)/sizeof(test_cases[0]); t++) {
+        int result = Tritype(test_cases[t].i, test_cases[t].j, test_cases[t].k);
+        printf("Test %d: %s --> Result: %d\n", t + 1, test_cases[t].description, result);
+    }
+
+    return 0;
+}
+✅ Step 4: Thought Process Behind the Annotations
+I started by identifying distinct behavioral cases based on triangle theory and how Tritype handles them.
+
+Eva's report validated that the return values matched our understanding of the control flow — this gave me confidence to specify complete and disjoint behavior blocks.
+
+The postcondition 0 <= \result <= 3 is proven by Eva and is included as a general safety property.
+
+✅ Final Notes
+No code was removed, shortened, or altered.
+
+Annotations match the behavior deduced from both the code and Eva’s analysis.
+
+The annotations ensure a formal specification of the function’s contract — useful for verification or documentation.
+
+Let me know if you'd like to generate formal proofs with WP or extend the annotations to the test cases!
+
+
+
+
+
+
+
+

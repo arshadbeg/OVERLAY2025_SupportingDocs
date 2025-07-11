@@ -1,0 +1,109 @@
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment2_GPT/pathcrawler_set$ ls
+Example1-Tritype.c                       baseline_Example1-Tritype.c
+Pathcrawler_Output_Example1-Tritype.txt  pathcrawler_augmented_Example1-Tritype.c
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment2_GPT/pathcrawler_set$ frama-c -wp -wp-prover alt-ergo baseline_Example1-Tritype.c
+[kernel] Parsing baseline_Example1-Tritype.c (with preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] Warning: No goal generated
+[wp] Proved goals:    2 / 2
+  Terminating:     1
+  Unreachable:     1
+[wp:pedantic-assigns] baseline_Example1-Tritype.c:21: Warning:
+  No 'assigns' specification for function 'Tritype'.
+  Callers assumptions might be imprecise.
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment2_GPT/pathcrawler_set$ frama-c -wp -wp-prover z3 baseline_Example1-Tritype.c
+[kernel] Parsing baseline_Example1-Tritype.c (with preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] Warning: No goal generated
+[wp] Proved goals:    2 / 2
+  Terminating:     1
+  Unreachable:     1
+[wp:pedantic-assigns] baseline_Example1-Tritype.c:21: Warning:
+  No 'assigns' specification for function 'Tritype'.
+  Callers assumptions might be imprecise.
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment2_GPT/pathcrawler_set$ frama-c -wp -wp-prover cvc4 baseline_Example1-Tritype.c
+[kernel] Parsing baseline_Example1-Tritype.c (with preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] Warning: No goal generated
+[wp] Proved goals:    2 / 2
+  Terminating:     1
+  Unreachable:     1
+[wp:pedantic-assigns] baseline_Example1-Tritype.c:21: Warning:
+  No 'assigns' specification for function 'Tritype'.
+  Callers assumptions might be imprecise.
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment2_GPT/pathcrawler_set$ frama-c -wp -wp-prover cvc5 baseline_Example1-Tritype.c
+[kernel] Parsing baseline_Example1-Tritype.c (with preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] Warning: No goal generated
+[wp] Proved goals:    2 / 2
+  Terminating:     1
+  Unreachable:     1
+[wp:pedantic-assigns] baseline_Example1-Tritype.c:21: Warning:
+  No 'assigns' specification for function 'Tritype'.
+  Callers assumptions might be imprecise.
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment2_GPT/pathcrawler_set$ ls
+Example1-Tritype.c                       baseline_Example1-Tritype.c
+Pathcrawler_Output_Example1-Tritype.txt  pathcrawler_augmented_Example1-Tritype.c
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment2_GPT/pathcrawler_set$ frama-c -wp -wp-prover z3 pathcrawler_augmented_Example1-Tritype.c
+[kernel] Parsing pathcrawler_augmented_Example1-Tritype.c (with preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] 18 goals scheduled
+[wp] [Timeout] typed_Tritype_NotTriangle_Negative_ensures (Qed 253ms) (Z3)
+[wp] [Timeout] typed_Tritype_disjoint_Equilateral_Isosceles_NotTriangle (Qed 4ms) (Z3)
+[wp] [Timeout] typed_Tritype_complete_Equilateral_Isosceles_NotTriangle (Qed 3ms) (Z3)
+[wp] [Timeout] typed_Tritype_Scalene_ensures (Qed 281ms) (Z3)
+[wp] [Timeout] typed_Tritype_Isosceles_ensures (Qed 307ms) (Z3)
+[wp] [Timeout] typed_Tritype_Equilateral_ensures (Qed 297ms) (Z3)
+[wp] [Timeout] typed_Tritype_NotTriangle_Inequality_ensures (Qed 308ms) (Z3)
+[wp] Proved goals:   13 / 20
+  Terminating:     1
+  Unreachable:     1
+  Qed:            11 (3ms-81ms-308ms)
+  Timeout:         7
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment2_GPT/pathcrawler_set$ frama-c -wp -wp-prover alt-ergo pathcrawler_augmented_Example1-Tritype.c
+[kernel] Parsing pathcrawler_augmented_Example1-Tritype.c (with preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] 18 goals scheduled
+[wp] [Timeout] typed_Tritype_NotTriangle_Negative_ensures (Qed 253ms) (Alt-Ergo)
+[wp] [Timeout] typed_Tritype_Scalene_ensures (Qed 200ms) (Alt-Ergo)
+[wp] [Timeout] typed_Tritype_Isosceles_ensures (Qed 203ms) (Alt-Ergo)
+[wp] [Timeout] typed_Tritype_Equilateral_ensures (Qed 258ms) (Alt-Ergo)
+[wp] [Timeout] typed_Tritype_NotTriangle_Inequality_ensures (Qed 269ms) (Alt-Ergo)
+[wp] Proved goals:   15 / 20
+  Terminating:       1
+  Unreachable:       1
+  Qed:              11 (2ms-66ms-269ms)
+  Alt-Ergo 2.6.2:    2 (97ms-128ms)
+  Timeout:           5
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment2_GPT/pathcrawler_set$ frama-c -wp -wp-prover cvc4 pathcrawler_augmented_Example1-Tritype.c
+[kernel] Parsing pathcrawler_augmented_Example1-Tritype.c (with preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] 18 goals scheduled
+[wp] [Unknown] typed_Tritype_NotTriangle_Negative_ensures (Qed 251ms) (CVC4)
+[wp] [Unknown] typed_Tritype_disjoint_Equilateral_Isosceles_NotTriangle (Qed 6ms) (CVC4)
+[wp] [Unknown] typed_Tritype_complete_Equilateral_Isosceles_NotTriangle (Qed 2ms) (CVC4)
+[wp] [Unknown] typed_Tritype_Scalene_ensures (Qed 345ms) (CVC4)
+[wp] [Unknown] typed_Tritype_Isosceles_ensures (Qed 335ms) (CVC4)
+[wp] [Unknown] typed_Tritype_Equilateral_ensures (Qed 322ms) (CVC4)
+[wp] [Unknown] typed_Tritype_NotTriangle_Inequality_ensures (Qed 315ms) (CVC4)
+[wp] Proved goals:   13 / 20
+  Terminating:     1
+  Unreachable:     1
+  Qed:            11 (2ms-87ms-345ms)
+  Unknown:         7
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment2_GPT/pathcrawler_set$ frama-c -wp -wp-prover cvc5 pathcrawler_augmented_Example1-Tritype.c
+[kernel] Parsing pathcrawler_augmented_Example1-Tritype.c (with preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] 18 goals scheduled
+[wp] [Timeout] typed_Tritype_NotTriangle_Negative_ensures (Qed 240ms) (CVC5)
+[wp] [Timeout] typed_Tritype_Scalene_ensures (Qed 301ms) (CVC5)
+[wp] [Timeout] typed_Tritype_Isosceles_ensures (Qed 309ms) (CVC5)
+[wp] [Timeout] typed_Tritype_Equilateral_ensures (Qed 297ms) (CVC5)
+[wp] [Timeout] typed_Tritype_NotTriangle_Inequality_ensures (Qed 288ms) (CVC5)
+[wp] Proved goals:   15 / 20
+  Terminating:     1
+  Unreachable:     1
+  Qed:            11 (3ms-80ms-309ms)
+  CVC5 1.1.2:      2 (133ms-909ms)
+  Timeout:         5
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment2_GPT/pathcrawler_set$

@@ -1,0 +1,59 @@
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment1$ frama-c -wp -wp-prover z3 Baseline_Example1_Annotated_GPT.c
+[kernel] Parsing Baseline_Example1_Annotated_GPT.c (with preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] 17 goals scheduled
+[wp] [Timeout] typed_Tritype_disjoint_equilateral_invalid_isosceles_scalene (Qed 4ms) (Z3)
+[wp] [Timeout] typed_Tritype_invalid_ensures (Qed 242ms) (Z3)
+[wp] [Timeout] typed_Tritype_complete_equilateral_invalid_isosceles_scalene (Qed 6ms) (Z3)
+[wp] [Timeout] typed_Tritype_scalene_ensures (Qed 385ms) (Z3)
+[wp] [Timeout] typed_Tritype_isosceles_ensures (Qed 309ms) (Z3)
+[wp] [Timeout] typed_Tritype_equilateral_ensures (Qed 287ms) (Z3)
+[wp] Proved goals:   13 / 19
+  Terminating:     1
+  Unreachable:     1
+  Qed:            11 (4ms-72ms-385ms)
+  Timeout:         6
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment1$ frama-c -wp -wp-prover alt-ergo Baseline_Example1_Annotated_GPT.c
+[kernel] Parsing Baseline_Example1_Annotated_GPT.c (with preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] 17 goals scheduled
+[wp] [Timeout] typed_Tritype_invalid_ensures (Qed 206ms) (Alt-Ergo)
+[wp] [Timeout] typed_Tritype_scalene_ensures (Qed 213ms) (Alt-Ergo)
+[wp] [Timeout] typed_Tritype_isosceles_ensures (Qed 273ms) (Alt-Ergo)
+[wp] [Timeout] typed_Tritype_equilateral_ensures (Qed 253ms) (Alt-Ergo)
+[wp] Proved goals:   15 / 19
+  Terminating:       1
+  Unreachable:       1
+  Qed:              11 (2ms-56ms-273ms)
+  Alt-Ergo 2.6.1:    2 (95ms-118ms)
+  Timeout:           4
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment1$ frama-c -wp -wp-prover cvc4 Baseline_Example1_Annotated_GPT.c
+[kernel] Parsing Baseline_Example1_Annotated_GPT.c (with preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] 17 goals scheduled
+[wp] [Unknown] typed_Tritype_invalid_ensures (Qed 208ms) (CVC4)
+[wp] [Unknown] typed_Tritype_disjoint_equilateral_invalid_isosceles_scalene (Qed 2ms) (CVC4)
+[wp] [Unknown] typed_Tritype_complete_equilateral_invalid_isosceles_scalene (Qed 2ms) (CVC4)
+[wp] [Unknown] typed_Tritype_scalene_ensures (Qed 298ms) (CVC4)
+[wp] [Unknown] typed_Tritype_isosceles_ensures (Qed 298ms) (CVC4)
+[wp] [Unknown] typed_Tritype_equilateral_ensures (Qed 334ms) (CVC4)
+[wp] Proved goals:   13 / 19
+  Terminating:     1
+  Unreachable:     1
+  Qed:            11 (2ms-67ms-334ms)
+  Unknown:         6
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment1$ frama-c -wp -wp-prover cvc5 Baseline_Example1_Annotated_GPT.c
+[kernel] Parsing Baseline_Example1_Annotated_GPT.c (with preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] 17 goals scheduled
+[wp] [Timeout] typed_Tritype_invalid_ensures (Qed 230ms) (CVC5)
+[wp] [Timeout] typed_Tritype_scalene_ensures (Qed 279ms) (CVC5)
+[wp] [Timeout] typed_Tritype_isosceles_ensures (Qed 258ms) (CVC5)
+[wp] [Timeout] typed_Tritype_equilateral_ensures (Qed 263ms) (CVC5)
+[wp] Proved goals:   15 / 19
+  Terminating:     1
+  Unreachable:     1
+  Qed:            11 (3ms-61ms-279ms)
+  CVC5 1.1.2:      2 (121ms-482ms)
+  Timeout:         4
+arshadbeg@ArshadBegMU:/mnt/c/Users/Arshad/Desktop/GitHub/VERIFAI-NUIM/May 6 onwards/PathCrawler-Web Interface Examples/Experiment1$
